@@ -13,7 +13,7 @@ Python, NumPy, PyTorch, cvxpy, cvxpylayers, faiss, scikit-learn, Matplotlib
 # Usage
 This setup is provided for CIFAR10 dataset using ResNet-18 model. 
 
-One needs to first store ResNet-18 checkpoint under resnet_checkp/ which is pre-trained on the entire dataset. train.py can be used for this purpose.
+One needs to first store ResNet-18 checkpoint under resnet_checkp/ which is pre-trained on the entire dataset. ```python train.py``` can be used for this purpose.
 
 Following this, running ```python subsetfind.py``` yields the subset based on the fraction one provides.
 
