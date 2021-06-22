@@ -23,7 +23,6 @@ import cvxpy as cp
 import torch.backends.cudnn as cudnn
 from cvxpylayers.torch import CvxpyLayer
 from models import resnet
-from models import resnet
 
 
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
