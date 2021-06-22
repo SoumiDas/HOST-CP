@@ -10,7 +10,7 @@ import torchvision.transforms as transforms
 import os
 import argparse
 
-from models import resnet
+from arch import resnet
 
 
 
