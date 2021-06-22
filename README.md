@@ -4,7 +4,7 @@
 
 *Authors*: Soumi Das, Arshdeep Singh, Saptarshi Chatterjee, Suparna Bhattacharya, Sourangshu Bhattacharya
 
-This is the code repository for the paper "Finding High-Value Training Data Subset through Differentiable Convex Programming" accepted at ECML-PKDD 2021. We propose the method HOST-CP (High-value Online Subset selection of Training samples through differentiable Convex Programming) for selecting subsets in an online method.
+This is the code repository for the paper "Finding High-Value Training Data Subset through Differentiable Convex Programming" accepted at ECML-PKDD 2021 (https://2021.ecmlpkdd.org/). We propose the method HOST-CP (High-value Online Subset selection of Training samples through differentiable Convex Programming) for selecting subsets in an online method.
 
 # Pre-requisites
 
