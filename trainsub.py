@@ -226,7 +226,7 @@ def test(epoch):
     
     print(acc)
 
-for epoch in range(start_epoch, start_epoch+500): #Run till convergence
+for epoch in range(start_epoch, start_epoch+600): #Run till convergence
     print("Training")
     train(epoch)
     print("Testing")
