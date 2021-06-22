@@ -7,4 +7,4 @@ One needs to first store ResNet-18 checkpoint under resnet_checkp/ which is pre-
 
 Following this, running subsetfind.py yields the subset based on the fraction one provides.
 
-trainsub.py can be used to run training on the subset provided by the method.
+'''python trainsub.py''' can be used to run training on the subset provided by the method.
