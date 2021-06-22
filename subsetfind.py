@@ -157,7 +157,7 @@ classes = ('plane', 'car', 'bird', 'cat',
 D_out = 100 #feature dimension
 D_in = 40 #Number of incoming instances
 D_exin = 40 #Maximum number of existing instances
-fraction = 0.05
+fraction = 0.20 #20%
 m = 10   # number of subquantizers for FAISS
 n_bits = 2 # bits for FAISS
 d = 100 #feature dimension
@@ -339,7 +339,7 @@ def subset_show(sind,epoch,batch,images, labels):
   
   ########Use the selected indices to train on the subset from scratch after subset selection############
   
-  with open('./selected_indices_5.txt','a') as fpsi:
+  with open('./selected_indices_20.txt','a') as fpsi:
     fpsi.write('\n')
     fpsi.write("Epoch "+str(epoch)+", Batch "+str(batch)+'\n')
     fpsi.write(','.join(str(si) for si in sind))
