@@ -5,6 +5,6 @@ This setup is provided for CIFAR10 dataset using ResNet-18 model.
 
 One needs to first store ResNet-18 checkpoint under resnet_checkp/ which is pre-trained on the entire dataset. train.py can be used for this purpose.
 
-Following this, running subsetfind.py yields the subset based on the fraction one provides.
+Following this, running ```python subsetfind.py``` yields the subset based on the fraction one provides.
 
 ```python trainsub.py``` can be used to run training on the subset provided by the method.
