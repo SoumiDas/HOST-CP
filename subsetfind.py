@@ -335,7 +335,7 @@ def subset_show(sind,epoch,batch,images, labels):
     
   print("Epoch"+str(epoch)+",Batch"+str(batch))
   '''for si in range(im.shape[0]):
-    save_image(im[si],'./epoch_images_5_15ep'+str(epoch)+'/im_'+str(batch)+'_'+str(si)+'.png')'''
+    save_image(im[si],'./epoch_images_20'+str(epoch)+'/im_'+str(batch)+'_'+str(si)+'.png')'''
   
   ########Use the selected indices to train on the subset from scratch after subset selection############
   
