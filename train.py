@@ -81,10 +81,6 @@ def train(epoch):
         _, predicted = outputs.max(1)
         total += targets.size(0)
         correct += predicted.eq(targets).sum().item()
-    
-    with open('trainloss.txt','a+') as fp:
-        fp.write(str(train_loss/batch_idx))
-        fp.write("\n")
 
     print(train_loss/batch_idx)
 
@@ -119,9 +115,6 @@ def test(epoch):
             os.mkdir('checkpoint')
         torch.save(state, './checkpoint/ckpt.pth')
         best_acc = acc
-    with open('test_acc.txt','a+') as fp1:
-        fp1.write(str(acc))
-        fp1.write('\n')
     
     print(acc)
 
