@@ -302,7 +302,6 @@ pc = {}
 ps = {}
 pred = {}
 fextemp = []
-begin = time.time()
 #Training epoch#######################
 for epoch in range(5):
   
@@ -484,5 +483,4 @@ for epoch in range(5):
             running_loss = 0.0
             running_tloss = 0.0
 
-print('Finished Training')
-print(time.time()-begin)
+print('Done')
