@@ -8,7 +8,7 @@ This is the code repository for the paper "Finding High-Value Training Data Subs
 
 # Pre-requisites
 
-* Python, NumPy, PyTorch, cvxpy, cvxpylayers, faiss, scikit-learn, Matplotlib
+* Python, NumPy, PyTorch, cvxpy, cvxpylayers, faiss, Pillow, scikit-learn, Matplotlib
 
 # Usage
 This setup is provided for CIFAR10 dataset using ResNet-18 model. 
