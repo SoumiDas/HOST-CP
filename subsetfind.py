@@ -379,6 +379,7 @@ for epoch in range(5):
         svfc = svf.to(device='cuda')
         #print("Selected vectors")
         #print(sv)
+
         #########For populating existing set with indices of selected instances########
         sc = svfc > torch.min(svfc)
         sind = list(sc.nonzero())
@@ -408,7 +409,7 @@ for epoch in range(5):
             else:
               param.grad.requires_grad_(False)
             param.grad.zero_()
-        #$\nabla_{\theta} Trloss(\phi,\theta_{t-1}) = \sum_{j\in training data} (s_j(\phi) \nabla_{\theta} Loss(x_j,y_j,\theta_{t-1}) $
+        #\nabla_{\theta} Trloss(\phi,\theta_{t}) = \sum_{j\in training data} (s_j(\phi) \nabla_{\theta} Loss(x_j,y_j,\theta_{t}) $
         for lind in range(loss.shape[0]):
           loss[lind].backward(retain_graph=True)
           for name,param in classf.named_parameters():
@@ -423,7 +424,7 @@ for epoch in range(5):
           paradicts[name] = ps[name].clone()
           paradictc[name] = pc[name].clone()
 
-        #$\hat{\theta}_t(\phi,\theta_{t-1})$ = $\theta_{t-1} - \eta \nabla_{\theta} TrLoss(\phi,\theta_{t-1})$
+        #$\hat{\theta} = $\theta_{t} - \eta \nabla_{\theta} TrLoss(\phi,\theta_{t})$
         for name,param in classf.named_parameters():
           paramsel[name] = param.data - lr*paradicts[name]
 
@@ -431,7 +432,7 @@ for epoch in range(5):
         batchent = 0
         correct = 0
         total = 0
-        classft = Net_test(paramsel) # \hat{\theta}_t(\phi,\theta_{t-1})
+        classft = Net_test(paramsel) # \hat{\theta}
         classft = classft.cuda()
         for testi, data in enumerate(test_loader,0):       
               images, labels = data
@@ -451,7 +452,7 @@ for epoch in range(5):
 
               #optimizer1.zero_grad()
               for name,param in red_dim.named_parameters():
-                #print(name)
+        
                 if param.grad is not None:
                   if param.grad.grad_fn is not None:
                     param.grad.detach_()
@@ -463,19 +464,20 @@ for epoch in range(5):
              
               total += labels.size(0)
               correct += (predicted == labels).sum()
-              
-        
-        #$\phi_t$ = $\phi_{t-1} - \eta \nabla TsLoss(\phi_{t-1})$
+
+        # $\theta_{t+1}$ = $\theta_{t} - \eta \nabla TrLoss(\phi,\theta_{t})$
+        with torch.no_grad():
+          for name,param in classf.named_parameters():
+            paradictc[name] = paradictc[name].add_(param,alpha=weight_decay) #Weight decay
+            param.add_(paradictc[name],alpha=-lr) #Learning rate
+       
+        #$\phi_{t+1}$ = $\phi_{t} - \eta \nabla TsLoss(\phi_{t})$
         with torch.no_grad():
           for name,param in red_dim.named_parameters():
             pred[name] = pred[name].add_(param,alpha=weight_decay) #Weight decay
             param.add_(pred[name],alpha=-lr) #Learning rate
 
-        # $\theta_t$ = $\theta_{t-1} - \eta \nabla TrLoss(\phi,\theta_{t-1})$
-        with torch.no_grad():
-          for name,param in classf.named_parameters():
-            paradictc[name] = paradictc[name].add_(param,alpha=weight_decay) #Weight decay
-            param.add_(paradictc[name],alpha=-lr) #Learning rate
+        
 
         running_loss += lossv.mean().item()
         running_tloss += loss.mean().item()
