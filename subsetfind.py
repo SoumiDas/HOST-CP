@@ -479,7 +479,7 @@ for epoch in range(5):
 
         running_loss += lossv.mean().item()
         running_tloss += loss.mean().item()
-        if i % 20 == 19:    # print every 20 mini-batches
+        if i % 20 == 19:
             running_loss = 0.0
             running_tloss = 0.0
 
