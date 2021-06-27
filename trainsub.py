@@ -55,7 +55,11 @@ with open('./selected_indices_20.txt','r') as fp:
         if line.startswith('Epoch 4'):
             enter = 1
             batch = int(line.split('Batch')[1].strip())
-            continue      
+            continue
+        elif line.startswith('Epoch 5'):
+            enter = 0
+            break
+                 
         if enter==1:
             pairind = line.split(',tensor')
             for pair in pairind:
